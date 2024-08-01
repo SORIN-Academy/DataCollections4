@@ -32,6 +32,8 @@ def test1():
         hotkey('enter')
         time.sleep(3)
         
+        #collection
+        
         # Click on specific coordinates 
         click(60, 75)
         time.sleep(3)

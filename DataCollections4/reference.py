@@ -52,5 +52,5 @@ def test1():
     # Click to close or navigate away (adjust coordinates if necessary)
     click(1030, 20)
 
-# Run the test function
+# Run the test function62'
 test1()
