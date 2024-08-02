@@ -1,8 +1,11 @@
 import time
 import webbrowser
 import pyautogui
-from pyautogui import hotkey, click, typewrite
+from pyautogui import hotkey, click, typewrite, displayMousePosition
 import csv
+import requests,bs4
+from selenium import webdriver
+from selenium.webdriver.chrome.service import service
 
 def csv_get(file_path):
     result = []
@@ -15,42 +18,33 @@ def csv_get(file_path):
 names = csv_get('names.csv')
 
 def test1():
-    print("Opening the web page...")
     # Open the web page
     webbrowser.open_new('https://sos.oregon.gov/business/Pages/default.aspx')
     time.sleep(5)  # Wait for the page to load
     
-    print("Clicking initial coordinates...")
-    # Click on initial coordinates (adjust as needed)
+    # Click on initial coordinates 
     click(625, 410)
     time.sleep(0.3)
-    
-    print("Scrolling down...")
-    # Scroll down
-    pyautogui.scroll(-1200)
-    time.sleep(1)  # Allow time for scrolling
-    
-    print("Clicking secondary coordinates...")
-    # Click on the next coordinates (adjust as needed)
-    click(667, 849)
-    time.sleep(1.5)
-    
     for name in names:
-        print(f"Typing name: {name}")
+        pyautogui.scroll(-5000)
+        pyautogui.scroll(1000)
+        time.sleep(.5)
+        click(679,506)
         # Type the name and press Enter
         typewrite(name)
         hotkey('enter')
-        time.sleep(1.5)
-        
-        print("Clicking specific coordinates...")
-        # Click on specific coordinates (adjust as needed)
+        time.sleep(3)
+        # I need it to store the link of the webpage that was opened as a variable
+        time.sleep(1)
+        link = m.get_url()
+        print(link)
+        # closing out
         click(60, 75)
-        time.sleep(1.5)
-        click(60, 75)
-    
-    print("Final click...")
-    # Click to close or navigate away (adjust coordinates if necessary)
+        time.sleep(3)
+        click(697,800)
+    #Click to close or navigate away 
     click(1030, 20)
 
-# Run the test function62'
+# Run the test function
 test1()
+m.delete_session()

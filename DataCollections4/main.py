@@ -3,6 +3,10 @@ import webbrowser
 import pyautogui
 from pyautogui import hotkey, click, typewrite, displayMousePosition
 import csv
+import requests,bs4
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
 def csv_get(file_path):
     result = []
@@ -16,7 +20,9 @@ names = csv_get('names.csv')
 
 def test1():
     # Open the web page
-    webbrowser.open_new('https://sos.oregon.gov/business/Pages/default.aspx')
+    s = Service('C:/Program Files/Google/Chrome/Application/chromedriver.exe') #path to webdriver
+    driver = webdriver.Chrome(service=s)
+    driver.get('https://sos.oregon.gov/business/Pages/default.aspx')
     time.sleep(5)  # Wait for the page to load
     
     # Click on initial coordinates 
@@ -31,10 +37,11 @@ def test1():
         typewrite(name)
         hotkey('enter')
         time.sleep(3)
-        
-        #collection
-        
-        # Click on specific coordinates 
+        # I need it to store the link of the webpage that was opened as a variable
+        time.sleep(1)
+        link= driver.current_url
+        print(link)
+        # closing out
         click(60, 75)
         time.sleep(3)
         click(697,800)
